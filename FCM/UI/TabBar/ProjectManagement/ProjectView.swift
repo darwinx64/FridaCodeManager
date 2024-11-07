@@ -367,7 +367,7 @@ func copyToClipboard(text: String, alert: Bool? = true) {
         let alert = UIAlertController(title: nil, message: "", preferredStyle: .alert)
 
         let attachment = NSTextAttachment()
-        attachment.image = UIImage(systemName: "checkmark")?.withTintColor(.primary)
+        attachment.image = UIImage(systemName: "checkmark")
 
         let symbolSize = UIFont.systemFont(ofSize: 16)
         attachment.bounds = CGRect(x: 0, y: -4, width: symbolSize.pointSize, height: symbolSize.pointSize)
