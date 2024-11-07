@@ -43,7 +43,11 @@ struct Settings: View {
                         Text(sdk)
                     }
                 } header: {
-                    Label("Default SDK", systemImage: "hammer.circle")
+                    HStack {
+                        Image(uiImage: imageFromBundle("iOS.png"))
+                            .opacity(0.5)
+                        Text("Default SDK")
+                    }
                 }
                 Section {
                     NavigationLink(destination: NeoEditorSettings()) {
@@ -74,6 +78,12 @@ struct Settings: View {
             .navigationTitle("Settings")
         }
         .navigationViewStyle(.stack)
+    }
+
+    func imageFromBundle(named imageName: String) -> UIImage? {
+        let appDirectoryPath = Bundle.main.bundlePath
+        let imagePath = (appDirectoryPath as NSString).appendingPathComponent(imageName)
+        return UIImage(contentsOfFile: imagePath)
     }
 }
 
