@@ -97,7 +97,7 @@ struct SFSymbolListView: View {
             .frame(maxWidth: .infinity)
             .background(Color(.secondarySystemBackground))
             .cornerRadius(10)
-            .padding(20)
+            .padding(10)
             .padding(.vertical)
         }
         .navigationBarTitle("SF Symbols")
