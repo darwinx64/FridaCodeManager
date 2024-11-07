@@ -28,10 +28,6 @@ struct RootView: View {
 
     var body: some View {
         TabView {
-            Home(hellnah: $project_list_id)
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
             ProjectView(hello: $project_list_id, Projects: $projects)
                 .tabItem {
                     Label("Projects", systemImage: "folder")
@@ -45,6 +41,7 @@ struct RootView: View {
                     Label("Settings", systemImage: "gear")
                 }
         }
+        .accentColor(.secondary)
         .onOpenURL { url in
             importProj(target: url.path)
             project_list_id = UUID()

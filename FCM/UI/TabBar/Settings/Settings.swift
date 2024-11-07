@@ -35,6 +35,9 @@ struct Settings: View {
     var body: some View {
         NavigationView {
             List {
+                NavigationLink(destination: AboutView()) {
+                    Label("About FridaCodeManager")
+                }
                 Section {
                     NavigationLink(destination: SDKList(directoryPath: URL(fileURLWithPath: global_sdkpath) ,sdk: $sdk, isActive: $isActive), isActive: $isActive) {
                         Text(sdk)

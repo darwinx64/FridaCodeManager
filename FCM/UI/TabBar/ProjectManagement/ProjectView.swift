@@ -30,6 +30,19 @@ struct ProjectView: View {
     @State private var projrname: String = ""
     @State private var pathstate: String = ""
     @State private var action: Int = 0
+    @State private var fileImporter = false
+    @State private var showProj = false
+
+    @Environment(\.presentationMode) private var presentationMode
+
+    @State var AppName: String = ""
+    @State var BundleID: String = ""
+
+    #if jailbreak
+    @State private var type = 1
+    #elseif trollstore || stock
+    @State private var type = 2
+    #endif
 
     @Binding var Projects: [Project]
     var body: some View {
@@ -95,7 +108,21 @@ struct ProjectView: View {
             }
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Projects")
-            .navigationBarTitleDisplayMode(.inline)
+            .fileImporter(isPresented: $fileImporter, allowedContentTypes: [.project], onCompletion: handleFileImport)
+            .toolbar() {
+                Button(action: {
+                    AppName = ""
+                    BundleID = ""
+                    showProj = true
+                }) {
+                    Image(systemName: "folder.fill.badge.plus")
+                }
+                Button(action: {
+                    fileImporter = true
+                }) {
+                    Image(systemName: "square.and.arrow.down.fill")
+                }
+            }
             .sheet(isPresented: $Prefs) {
                 ProjPreferences(ProjectName: $projname, hello: $hello, rname: $projrname)
                     .onDisappear {
@@ -111,6 +138,37 @@ struct ProjectView: View {
                 .background(BackgroundClearView())
                 .edgesIgnoringSafeArea([.bottom])
             }
+            .sheet(isPresented: $showProj) {
+                BottomPopupView {
+                    POHeader(title: "Create Project")
+                    POTextField(title: "Application Name", content: $AppName)
+                    POTextField(title: "Bundle Identifier", content: $BundleID)
+                    POPicker(function: createProject_trigger, title: "Scheme", arrays: [PickerArrays(title: "App", items: [PickerItems(id: 1, name: "Swift"), PickerItems(id: 2, name: "ObjC"), PickerItems(id: 3, name: "Swift/ObjC"), PickerItems(id: 5, name: "Swift/C++")]), PickerArrays(title: "Binary", items: [PickerItems(id: 4, name: "C")])], type: $type)
+                }
+                .background(BackgroundClearView())
+                .edgesIgnoringSafeArea([.bottom])
+            }
+        }
+    }
+
+    private func handleFileImport(result: Result<URL, Error>) -> Void {
+        switch result {
+        case .success(let fileURL):
+            importProj(target: fileURL.path)
+            hello = UUID()
+        case .failure(let error):
+            print("Error importing file: \(error.localizedDescription)")
+        }
+    }
+
+    private func createProject_trigger() -> Void {
+        if AppName != "", BundleID != "" {
+            haptfeedback(1)
+            showProj = false
+            _ = MakeApplicationProject(AppName, BundleID, type: type)
+            (AppName, BundleID, hello) = ("", "", UUID())
+        } else {
+            haptfeedback(2)
         }
     }
 
