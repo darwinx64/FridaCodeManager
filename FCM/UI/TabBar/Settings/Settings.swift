@@ -36,7 +36,7 @@ struct Settings: View {
         NavigationView {
             List {
                 NavigationLink(destination: AboutView()) {
-                    Label("About FridaCodeManager")
+                    Label("About FridaCodeManager", systemImage: "info.circle")
                 }
                 Section {
                     NavigationLink(destination: SDKList(directoryPath: URL(fileURLWithPath: global_sdkpath) ,sdk: $sdk, isActive: $isActive), isActive: $isActive) {
