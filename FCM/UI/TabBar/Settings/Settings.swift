@@ -46,7 +46,10 @@ struct Settings: View {
                     HStack {
                         if let img = imageFromBundle(named: "iOS.png") {
                             Image(uiImage: img)
-                                .frame(width: 16, height: 16)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 16)
+                                .frame(maxHeight: .infinity)
                                 .opacity(0.5)
                         }
                         Text("Default SDK")
