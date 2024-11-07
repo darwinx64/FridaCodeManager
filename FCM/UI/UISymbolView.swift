@@ -31,19 +31,31 @@ struct SFSymbolView: View {
             }
             Section(header: Text("categories")) {
                 NavigationLink( destination: SFSymbolListView(symbols: gcommunication())) {
-                    Label("Communication",systemImage: "bubble.left.and.bubble.right.fill")
+                    Label("Communication", systemImage: "bubble.left.and.bubble.right.fill")
                 }
                 NavigationLink( destination: SFSymbolListView(symbols: gweather())) {
-                    Label("Weather",systemImage: "cloud.moon.rain.fill")
+                    Label("Weather", systemImage: "cloud.moon.rain.fill")
                 }
                 NavigationLink( destination: SFSymbolListView(symbols: gdevices())) {
-                    Label("Devices",systemImage: "airpodspro")
+                    Label("Devices", systemImage: "earbuds.case.fill")
                 }
                 NavigationLink( destination: SFSymbolListView(symbols: gconnectivity())) {
-                    Label("Connectivity",systemImage: "network")
+                    Label("Connectivity", systemImage: "network")
+                }
+                NavigationLink( destination: SFSymbolListView(symbols: gtransportation())) {
+                    Label("Transportation", systemImage: "airplane")
                 }
                 NavigationLink( destination: SFSymbolListView(symbols: gnature())) {
-                    Label("Nature",systemImage: "leaf.fill")
+                    Label("Nature", systemImage: "leaf.fill")
+                }
+                NavigationLink( destination: SFSymbolListView(symbols: gtextFormatting())) {
+                    Label("Text Formatting", systemImage: "textformat")
+                }
+                NavigationLink( destination: SFSymbolListView(symbols: gediting())) {
+                    Label("Editing", systemImage: "pencil")
+                }
+                NavigationLink( destination: SFSymbolListView(symbols: gprivacyAndSecurity())) {
+                    Label("Privacy & Security", systemImage: "shield.righthalf.filled")
                 }
             }
         }
@@ -53,23 +65,36 @@ struct SFSymbolView: View {
     }
 }
 
+class SymbolStore: ObservableObject {
+    @Published var symbols: [String]
+    
+    init(symbols: [String]) {
+        self.symbols = symbols
+    }
+}
+
 struct SFSymbolListView: View {
     @State var symbols: [String]
+    @StateObject var symbolStore = SymbolStore(symbols: symbols)
     var body: some View {
-        List(symbols, id: \.self) { symbolName in
-            Button( action: {
-                copyToClipboard(text: symbolName)
-            }){
-                HStack {
-                    Image(systemName: symbolName)
-                        .frame(width: 30, height: 30)
-                    Spacer()
-                    Text(symbolName)
+        ScrollView {
+            LazyVStack {
+                ForEach(symbolStore.symbols, id: \.self) { symbolName in
+                    Button(action: {
+                        copyToClipboard(text: symbolName)
+                    }) {
+                        HStack {
+                            Image(systemName: symbolName)
+                                .frame(width: 30, height: 30)
+                            Spacer()
+                            Text(symbolName)
+                        }
+                    }
                 }
             }
         }
-        .navigationBarTitle("SFSymbols")
+        .navigationBarTitle("SF Symbols")
         .navigationBarTitleDisplayMode(.inline)
-        .listStyle(InsetGroupedListStyle())
+        //.listStyle(InsetGroupedListStyle())
     }
 }
