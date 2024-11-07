@@ -31,7 +31,7 @@ struct AboutView: View {
 				ChangelogView()
 				ContributorRowListView()
 			}
-			.navigationTitle("About")
+			.navigationBarTitle("About")
 			.navigationBarTitleDisplayMode(.inline)
 			.listStyle(InsetGroupedListStyle())
 		}

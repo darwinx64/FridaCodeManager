@@ -68,7 +68,7 @@ struct SettingsView: View {
 						Label("SDK Hub", systemImage: "arrow.down")
 					}
 					NavigationLink(destination: SFSymbolView()) {
-						Label("SFSymbols", systemImage: "square.grid.3x3.fill")
+						Label("SF Symbols", systemImage: "square.grid.3x3.fill")
 					}
 				} header: {
 					Label("Additional Tools", systemImage: "sparkles")
