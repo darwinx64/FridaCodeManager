@@ -367,13 +367,13 @@ func copyToClipboard(text: String, alert: Bool? = true) {
         let alert = UIAlertController(title: nil, message: "", preferredStyle: .alert)
 
         let attachment = NSTextAttachment()
-        attachment.image = UIImage(systemName: "checkmark")
+        attachment.image = UIImage(systemName: "checkmark")?.withTintColor(.systemFill)
 
         let symbolSize = UIFont.systemFont(ofSize: 16)
         attachment.bounds = CGRect(x: 0, y: -4, width: symbolSize.pointSize, height: symbolSize.pointSize)
         
         let attributedTitle = NSMutableAttributedString(attachment: attachment)
-        attributedTitle.append(NSAttributedString(string: " Copied", attributes: [.font: UIFont.systemFont(ofSize: 16)]))
+        attributedTitle.append(NSAttributedString(string: " Copied", attributes: [.font: UIFont.systemFont(ofSize: 16, weight: .bold)]))
 
         alert.setValue(attributedTitle, forKey: "attributedTitle")
 
