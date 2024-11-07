@@ -69,6 +69,7 @@ struct Settings: View {
                     Label("Additional Tools", systemImage: "sparkles")
                 }
             }
+            .accentColor(.secondary)
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Settings")
         }

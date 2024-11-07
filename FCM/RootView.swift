@@ -41,7 +41,6 @@ struct RootView: View {
                     Label("Settings", systemImage: "gear")
                 }
         }
-        .accentColor(.secondary)
         .onOpenURL { url in
             importProj(target: url.path)
             project_list_id = UUID()
