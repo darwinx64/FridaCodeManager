@@ -1024,6 +1024,8 @@ func grule(_ isaythis: String) -> [HighlightRule] {
     }
 }
 
+// TODO: Use JSON here maybe? this is really bad
+
 // MARK: Theming
 // XCode format
 // 1: Keywords

@@ -46,9 +46,9 @@ struct CreditsView: View {
 
     var body: some View {
         ForEach([
-            ("Credits", "heart", credits),
-            ("Side Credits", "star", sideCredits),
-            ("Others", "sparkles", others)
+            ("Credits", "heart", credits.shuffled()),
+            ("Side Credits", "star", sideCredits.shuffled()),
+            ("Others", "sparkles", others.shuffled())
         ], id: \.0) { sectionTitle, sectionImage, sectionCredits in
             Section {
                 ForEach(sectionCredits.indices, id: \.self) { index in
