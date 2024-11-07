@@ -1,5 +1,5 @@
 /*
- ContributorRowView.swift
+ ScreenEmulatorUIView.swift
 
  Copyright (C) 2023, 2024 SparkleChan and SeanIsTethered
  Copyright (C) 2024 fridakitten
@@ -22,22 +22,20 @@
  */
 import SwiftUI
 
-struct ContributorRowView: View {
-	@State var contributor: Contributor
-	var body: some View {
-		HStack {
-			AsyncImageLoaderView(urlString: contributor.avatar, width: 50, height: 50)
-				.shadow(color: Color.black.opacity(0.5), radius: 2, x: 0, y: 2)
-			Spacer()
-			VStack {
-				Text(contributor.name)
-					.foregroundColor(.primary)
-					.font(.system(size: 14, weight: .bold))
-				Text(contributor.description)
-					.foregroundColor(.secondary)
-					.font(.system(size: 12, weight: .semibold))
-			}.frame(width: 200)
-			Spacer()
-		}
-	}
+let serialQueue = DispatchQueue.global(qos: .background)
+let screenSize = UIScreen.main.bounds
+let screenWidth = screenSize.width
+let screenHeight = screenSize.height
+
+struct ScreenEmulatorUIView: UIViewRepresentable {
+    func makeUIView(context: Context) -> UIView {
+         guard let screenEmulator = getEmulator() else {
+             return UIView()
+         }
+         _ = getTracker(UnsafeMutableRawPointer(Unmanaged.passUnretained(screenEmulator).toOpaque()))
+         return screenEmulator
+    }
+
+    func updateUIView(_ uiView: UIView, context: Context) -> Void {
+    }
 }

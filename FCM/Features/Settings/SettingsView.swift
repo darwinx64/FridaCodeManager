@@ -1,4 +1,4 @@
- /*
+/*
  SettingsView.swift
 
  Copyright (C) 2023, 2024 SparkleChan and SeanIsTethered
@@ -49,6 +49,16 @@ struct SettingsView: View {
 					}
 				} header: {
 					Label("Default SDK", systemImage: "hammer.circle")
+				}
+				Section {
+					NavigationLink(destination: DisplaySettingsView()) {
+						Label("Display", systemImage: "paintbrush.fill")
+					}
+					NavigationLink(destination: EmptyView()) {
+						Label("App Icon", systemImage: "app.dashed")
+					}
+				} header: {
+					Label("General", systemImage: "gearshape")
 				}
 				Section {
 					NavigationLink(destination: NeoEditorSettings()) {

@@ -22,8 +22,8 @@
  */
 import SwiftUI
 
-struct ProjectView: View {
-	@Binding var hello: UUID
+struct ProjectListView: View {
+	@Binding var uuid: UUID
 	@State private var Prefs: Bool = false
 	@State private var Removal: Bool = false
 	@State private var projname: String = ""
@@ -128,9 +128,9 @@ struct ProjectView: View {
 				}
 			}
 			.sheet(isPresented: $Prefs) {
-				ProjPreferences(ProjectName: $projname, hello: $hello, rname: $projrname)
+				ProjectPrefsView(ProjectName: $projname, uuid: $uuid, rname: $projrname)
 					.onDisappear {
-						hello = UUID()
+						uuid = UUID()
 					}
 			}
 			.sheet(isPresented: $Removal) {
@@ -170,7 +170,7 @@ struct ProjectView: View {
 		switch result {
 		case .success(let fileURL):
 			importProj(target: fileURL.path)
-			hello = UUID()
+			uuid = UUID()
 		case .failure(let error):
 			print("Error importing file: \(error.localizedDescription)")
 		}
@@ -181,7 +181,7 @@ struct ProjectView: View {
 			haptfeedback(1)
 			showProj = false
 			_ = MakeApplicationProject(AppName, BundleID, type: type)
-			(AppName, BundleID, hello) = ("", "", UUID())
+			(AppName, BundleID, uuid) = ("", "", UUID())
 		} else {
 			haptfeedback(2)
 		}
@@ -218,7 +218,7 @@ struct ProjectView: View {
 	private func Removal_trigger() -> Void {
 		haptfeedback(1)
 		_ = rm("\(projname)")
-		hello = UUID()
+		uuid = UUID()
 		Removal = false
 	}
 
@@ -345,7 +345,7 @@ struct sean16View: View {
 
 	var body: some View {
 		VStack {
-			ScreenEmulator()
+			ScreenEmulatorUIView()
 				.frame(width: screenWidth, height: screenWidth)
 				.onAppear {
 					serialQueue.async {

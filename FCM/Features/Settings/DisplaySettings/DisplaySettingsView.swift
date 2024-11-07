@@ -1,5 +1,5 @@
 /*
- ContributorRowView.swift
+ DisplaySettingsView.swift
 
  Copyright (C) 2023, 2024 SparkleChan and SeanIsTethered
  Copyright (C) 2024 fridakitten
@@ -22,22 +22,11 @@
  */
 import SwiftUI
 
-struct ContributorRowView: View {
-	@State var contributor: Contributor
+struct DisplaySettingsView: View {
+	@AppStorage("accentColour") var accentColour: Color = Color(uiColor: UIColor.systemBlue)
 	var body: some View {
-		HStack {
-			AsyncImageLoaderView(urlString: contributor.avatar, width: 50, height: 50)
-				.shadow(color: Color.black.opacity(0.5), radius: 2, x: 0, y: 2)
-			Spacer()
-			VStack {
-				Text(contributor.name)
-					.foregroundColor(.primary)
-					.font(.system(size: 14, weight: .bold))
-				Text(contributor.description)
-					.foregroundColor(.secondary)
-					.font(.system(size: 12, weight: .semibold))
-			}.frame(width: 200)
-			Spacer()
+		List {
+
 		}
 	}
 }

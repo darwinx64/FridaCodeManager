@@ -28,7 +28,7 @@ struct RootView: View {
 
 	var body: some View {
 		TabView {
-			ProjectView(hello: $project_list_id, Projects: $projects)
+			ProjectView(uuid: $project_list_id, Projects: $projects)
 				.tabItem {
 					Label("Projects", systemImage: "folder")
 				}

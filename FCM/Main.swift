@@ -23,7 +23,7 @@
 import SwiftUI
 
 @main
-struct MyApp: App {
+struct FridaCodeManagerApp: App {
     init() {
         UIInit(type: 0)
     }
