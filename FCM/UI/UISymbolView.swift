@@ -85,12 +85,10 @@ struct SFSymbolListView: View {
                             Spacer()
                         }
                         .buttonStyle(.plain)
-                        .padding(12)
-                        if index < symbols.count - 1 {
-                            Divider()
-                        }
                     }
-                    Divider()
+                    if index < symbols.count - 1 {
+                        Divider()
+                    }
                 }
             }
             .frame(maxWidth: .infinity)
