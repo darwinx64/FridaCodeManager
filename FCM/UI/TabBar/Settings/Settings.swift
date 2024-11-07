@@ -42,7 +42,7 @@ struct Settings: View {
                     NavigationLink(destination: SDKList(directoryPath: URL(fileURLWithPath: global_sdkpath) ,sdk: $sdk, isActive: $isActive), isActive: $isActive) {
                         HStack {
                             Text("iOS")
-                                .fontWeight(.ultralight)
+                                .fontWeight(.ultraLight)
                             Text(sdk)
                         }
                     }
