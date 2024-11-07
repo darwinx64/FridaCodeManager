@@ -78,7 +78,7 @@ struct SFSymbolListView: View {
                         HStack {
                             Image(systemName: symbolName)
                                 .frame(width: 30, height: 30)
-                                .padding(.leading, 16)
+                                .padding(.leading, 12)
 
                             Text(symbolName)
                                 .padding(.leading, 8)
@@ -95,6 +95,7 @@ struct SFSymbolListView: View {
             .background(Color(.secondarySystemBackground))
             .cornerRadius(10)
         }
+        .padding(10)
         .navigationBarTitle("SF Symbols")
         .navigationBarTitleDisplayMode(.inline)
         //.listStyle(InsetGroupedListStyle())
