@@ -168,6 +168,11 @@ struct FileList: View {
                         }
                     }
                     Section {
+                        Button(action: {
+                            activeSheet = .impSheet
+                        }) {
+                            Label("Import", systemImage: "square.and.arrow.down.fill")
+                        }
                         Button(action: { activeSheet = .create }) {
                             Label("Create", systemImage: "doc.fill.badge.plus")
                         }
@@ -187,13 +192,6 @@ struct FileList: View {
                             }) {
                                 Label("Paste", systemImage: "doc.on.clipboard")
                             }
-                        }
-                    }
-                    Section {
-                        Button(action: {
-                            activeSheet = .impSheet
-                        }) {
-                            Label("Import", systemImage: "square.and.arrow.down.fill")
                         }
                     }
                 } label: {
