@@ -40,15 +40,11 @@ struct Settings: View {
                 }
                 Section {
                     NavigationLink(destination: SDKList(directoryPath: URL(fileURLWithPath: global_sdkpath) ,sdk: $sdk, isActive: $isActive), isActive: $isActive) {
-                        if let img = imageFromBundle(named: "iOS.png") {
-                            Image(uiImage: img)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 16)
-                                .frame(maxHeight: .infinity)
-                                .opacity(0.5)
+                        HStack {
+                            Text("iOS")
+                                .fontWeight(.ultralight)
+                            Text(sdk)
                         }
-                        Text(sdk)
                     }
                 } header: {
                     Label("Default SDK", systemImage: "hammer.circle")
@@ -82,12 +78,6 @@ struct Settings: View {
             .navigationTitle("Settings")
         }
         .navigationViewStyle(.stack)
-    }
-
-    func imageFromBundle(named imageName: String) -> UIImage? {
-        let appDirectoryPath = Bundle.main.bundlePath
-        let imagePath = (appDirectoryPath as NSString).appendingPathComponent(imageName)
-        return UIImage(contentsOfFile: imagePath)
     }
 }
 
