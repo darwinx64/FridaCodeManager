@@ -101,10 +101,10 @@ struct ProjectView: View {
 										}
 									}
 								}
-						   }.onDelete(perform: deleteProjectPrompt)
+						   }
 					   }
 					}
-				}
+				}.onDelete(perform: deleteProjectPrompt)
 			}
 			.listStyle(InsetGroupedListStyle())
 			.navigationTitle("Projects")

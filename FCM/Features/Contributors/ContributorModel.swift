@@ -1,4 +1,4 @@
- /*
+/*
  ContributorModel.swift
 
  Copyright (C) 2023, 2024 SparkleChan and SeanIsTethered
@@ -21,12 +21,12 @@
  along with FridaCodeManager. If not, see <https://www.gnu.org/licenses/>.
  */
 struct Contributor {
-    var name: String
-    var description: String
-    var avatar: String
-    init(_ name: String, _ description: String, _ avatar: String) {
-        self.name = name
-        self.description = description
-        self.avatar = avatar
-    }
+	var name: String
+	var description: String
+	var avatar: String
+	public init(_ name: String, _ description: String, _ avatar: String) {
+		self.name = name
+		self.description = description
+		self.avatar = avatar
+	}
 }
