@@ -85,8 +85,7 @@ struct SFSymbolListView: View {
                             Spacer()
                         }
                         .buttonStyle(.plain)
-                        .padding(.vertical, 12)
-                        .padding(.horizontal)
+                        .padding(12)
                         if index < symbols.count - 1 {
                             Divider()
                         }
@@ -97,8 +96,6 @@ struct SFSymbolListView: View {
             .frame(maxWidth: .infinity)
             .background(Color(.secondarySystemBackground))
             .cornerRadius(10)
-            .padding(2)
-            .padding(.vertical)
         }
         .navigationBarTitle("SF Symbols")
         .navigationBarTitleDisplayMode(.inline)
