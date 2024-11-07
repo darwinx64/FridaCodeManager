@@ -44,7 +44,7 @@ struct Settings: View {
                     }
                 } header: {
                     HStack {
-                        if let img = imageFromBundle("iOS.png") {
+                        if let img = imageFromBundle(named: "iOS.png") {
                             Image(uiImage: img)
                                 .opacity(0.5)
                         }
