@@ -1,5 +1,5 @@
 /*
- ProjectView.swift
+ ProjectListView.swift
 
  Copyright (C) 2023, 2024 SparkleChan and SeanIsTethered
  Copyright (C) 2024 fridakitten
