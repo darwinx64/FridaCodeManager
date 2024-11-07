@@ -23,7 +23,7 @@
 import SwiftUI
 
 struct ContributorRowView: View {
-	@State private var contributor: Contributor
+	@State public var contributor: Contributor
 	var body: some View {
 		HStack {
 			AsyncImageLoaderView(urlString: contributor.avatar, width: 50, height: 50)
