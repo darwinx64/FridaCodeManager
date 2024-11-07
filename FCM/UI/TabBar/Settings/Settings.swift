@@ -40,10 +40,6 @@ struct Settings: View {
                 }
                 Section {
                     NavigationLink(destination: SDKList(directoryPath: URL(fileURLWithPath: global_sdkpath) ,sdk: $sdk, isActive: $isActive), isActive: $isActive) {
-                        Text(sdk)
-                    }
-                } header: {
-                    HStack {
                         if let img = imageFromBundle(named: "iOS.png") {
                             Image(uiImage: img)
                                 .resizable()
@@ -52,8 +48,10 @@ struct Settings: View {
                                 .frame(maxHeight: .infinity)
                                 .opacity(0.5)
                         }
-                        Text("Default SDK")
+                        Text(sdk)
                     }
+                } header: {
+                    Label("Default SDK", systemImage: "hammer.circle")
                 }
                 Section {
                     NavigationLink(destination: NeoEditorSettings()) {
