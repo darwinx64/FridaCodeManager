@@ -31,9 +31,9 @@ struct AboutView: View {
                 changelogSection
                 CreditsView()
             }
-            .listStyle(InsetGroupedListStyle())
-            .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("About")
+            .navigationBarTitleDisplayMode(.inline)
+            .listStyle(InsetGroupedListStyle())
         }
         .navigationViewStyle(.stack)
     }
