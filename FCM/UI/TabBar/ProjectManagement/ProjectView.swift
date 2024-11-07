@@ -109,8 +109,8 @@ struct ProjectView: View {
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Projects")
             .fileImporter(isPresented: $fileImporter, allowedContentTypes: [.project], onCompletion: handleFileImport)
-            .toolbar() {
-                ToolbarItem {
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         AppName = ""
                         BundleID = ""
@@ -119,7 +119,7 @@ struct ProjectView: View {
                         Image(systemName: "folder.fill.badge.plus")
                     }
                 }
-                ToolbarItem {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         fileImporter = true
                     }) {
