@@ -110,17 +110,21 @@ struct ProjectView: View {
             .navigationTitle("Projects")
             .fileImporter(isPresented: $fileImporter, allowedContentTypes: [.project], onCompletion: handleFileImport)
             .toolbar() {
-                Button(action: {
-                    AppName = ""
-                    BundleID = ""
-                    showProj = true
-                }) {
-                    Image(systemName: "folder.fill.badge.plus")
+                ToolbarItem {
+                    Button(action: {
+                        AppName = ""
+                        BundleID = ""
+                        showProj = true
+                    }) {
+                        Image(systemName: "folder.fill.badge.plus")
+                    }
                 }
-                Button(action: {
-                    fileImporter = true
-                }) {
-                    Image(systemName: "square.and.arrow.down.fill")
+                ToolbarItem {
+                    Button(action: {
+                        fileImporter = true
+                    }) {
+                        Image(systemName: "square.and.arrow.down.fill")
+                    }
                 }
             }
             .sheet(isPresented: $Prefs) {
