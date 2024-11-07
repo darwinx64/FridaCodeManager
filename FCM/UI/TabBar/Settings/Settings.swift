@@ -40,11 +40,7 @@ struct Settings: View {
                 }
                 Section {
                     NavigationLink(destination: SDKList(directoryPath: URL(fileURLWithPath: global_sdkpath) ,sdk: $sdk, isActive: $isActive), isActive: $isActive) {
-                        HStack {
-                            Text("iOS")
-                                .fontWeight(.ultraLight)
-                            Text(sdk)
-                        }
+                        Text(sdk)
                     }
                 } header: {
                     Label("Default SDK", systemImage: "hammer.circle")
