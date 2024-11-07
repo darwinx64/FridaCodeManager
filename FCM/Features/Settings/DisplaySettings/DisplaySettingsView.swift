@@ -23,7 +23,7 @@
 import SwiftUI
 
 struct DisplaySettingsView: View {
-	@AppStorage("accentColour") var accentColour: Color = Color(uiColor: UIColor.systemBlue)
+	@AppStorage("accentColour") var accentColour: Color = .blue
 	var body: some View {
 		List {
 
