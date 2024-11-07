@@ -54,45 +54,40 @@ func GetProjects() -> [Project] {
                 continue
             }
 
-            do {
-                let infoPlistPath = "\(global_documents)/\(Item)/Resources/Info.plist"
-                let dontTouchMePlistPath = "\(global_documents)/\(Item)/Resources/DontTouchMe.plist"
+            let infoPlistPath = "\(global_documents)/\(Item)/Resources/Info.plist"
+            let dontTouchMePlistPath = "\(global_documents)/\(Item)/Resources/DontTouchMe.plist"
 
-                var BundleID = "Corrupted"
-                var Version = "Unknown"
-                var Executable = "Unknown"
-                var TG = "Unknown"
-                var SDK = "Unknown"
-                var TYPE = "Applications"
+            var BundleID = "Corrupted"
+            var Version = "Unknown"
+            var Executable = "Unknown"
+            var TG = "Unknown"
+            var SDK = "Unknown"
+            var TYPE = "Applications"
 
-                if let Info = NSDictionary(contentsOfFile: infoPlistPath) {
-                    if let extractedBundleID = Info["CFBundleIdentifier"] as? String {
-                        BundleID = extractedBundleID
-                    }
-                    if let extractedVersion = Info["CFBundleVersion"] as? String {
-                        Version = extractedVersion
-                    }
-                    if let extractedExecutable = Info["CFBundleExecutable"] as? String {
-                        Executable = extractedExecutable
-                    }
-                    if let extractedTG = Info["MinimumOSVersion"] as? String {
-                        TG = extractedTG
-                    }
+            if let Info = NSDictionary(contentsOfFile: infoPlistPath) {
+                if let extractedBundleID = Info["CFBundleIdentifier"] as? String {
+                    BundleID = extractedBundleID
                 }
-
-                if let Info2 = NSDictionary(contentsOfFile: dontTouchMePlistPath) {
-                    if let extractedSDK = Info2["SDK"] as? String {
-                        SDK = extractedSDK
-                    }
-                    if let extractedTYPE = Info2["TYPE"] as? String {
-                        TYPE = extractedTYPE
-                    }
+                if let extractedVersion = Info["CFBundleVersion"] as? String {
+                    Version = extractedVersion
                 }
-                Projects.append(Project(Name: Item, BundleID: BundleID, Version: Version, ProjectPath: "\(global_documents)/\(Item)", Executable: Executable, SDK: SDK, TG: TG, TYPE: TYPE))
-            } catch {
-                print("Failed to process item: \(Item), error: \(error)")
-                Projects.append(Project(Name: "Corrupted", BundleID: "Corrupted", Version: "Unknown", ProjectPath: "\(global_documents)/\(Item)", Executable: "Unknown", SDK: "Unknown", TG: "Unknown", TYPE: "Unknown"))
+                if let extractedExecutable = Info["CFBundleExecutable"] as? String {
+                    Executable = extractedExecutable
+                }
+                if let extractedTG = Info["MinimumOSVersion"] as? String {
+                    TG = extractedTG
+                }
             }
+
+            if let Info2 = NSDictionary(contentsOfFile: dontTouchMePlistPath) {
+                if let extractedSDK = Info2["SDK"] as? String {
+                    SDK = extractedSDK
+                }
+                if let extractedTYPE = Info2["TYPE"] as? String {
+                    TYPE = extractedTYPE
+                }
+            }
+            Projects.append(Project(Name: Item, BundleID: BundleID, Version: Version, ProjectPath: "\(global_documents)/\(Item)", Executable: Executable, SDK: SDK, TG: TG, TYPE: TYPE))
         }
         return Projects
     } catch {

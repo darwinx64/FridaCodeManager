@@ -486,7 +486,7 @@ private func bindLoadFiles(directoryPath: URL, files: Binding<[URL]>) -> Void {
                 }
             }
 
-            for (fileExtension, groupedFiles) in fileGroups.sorted(by: { $0.key < $1.key }) {
+            for (_, groupedFiles) in fileGroups.sorted(by: { $0.key < $1.key }) {
                 for file in groupedFiles {
                     DispatchQueue.main.async {
                         if !files.wrappedValue.contains(file) {

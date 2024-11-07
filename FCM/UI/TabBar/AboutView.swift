@@ -32,7 +32,7 @@ struct AboutView: View {
                 CreditsView()
             }
             .listStyle(InsetGroupedListStyle())
-            .navigationTitle("About", displayMode: .inline)
+            .navigationBarTitle("About", displayMode: .inline)
         }
         .navigationViewStyle(.stack)
     }
