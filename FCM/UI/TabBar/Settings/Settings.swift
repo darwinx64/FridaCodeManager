@@ -44,8 +44,10 @@ struct Settings: View {
                     }
                 } header: {
                     HStack {
-                        Image(uiImage: imageFromBundle("iOS.png"))
-                            .opacity(0.5)
+                        if let img = imageFromBundle("iOS.png") {
+                            Image(uiImage: img)
+                                .opacity(0.5)
+                        }
                         Text("Default SDK")
                     }
                 }
