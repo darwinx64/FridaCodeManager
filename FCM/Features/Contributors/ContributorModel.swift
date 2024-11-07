@@ -20,7 +20,7 @@
  You should have received a copy of the GNU General Public License
  along with FridaCodeManager. If not, see <https://www.gnu.org/licenses/>.
  */
-struct Contributor {
+struct Contributor: Hashable {
 	var name: String
 	var description: String
 	var avatar: String
