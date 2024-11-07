@@ -362,9 +362,31 @@ struct sean16View: View {
 
 func copyToClipboard(text: String, alert: Bool? = true) {
     haptfeedback(1)
-    if (alert ?? true) {ShowAlert(UIAlertController(title: "Copied", message: "", preferredStyle: .alert))}
+    
+    if (alert ?? true) {
+        let alert = UIAlertController(title: nil, message: "", preferredStyle: .alert)
+
+        let attachment = NSTextAttachment()
+        attachment.image = UIImage(systemName: "checkmark")?.withTintColor(.primary)
+
+        let symbolSize = UIFont.systemFont(ofSize: 16)
+        attachment.bounds = CGRect(x: 0, y: -4, width: symbolSize.pointSize, height: symbolSize.pointSize)
+        
+        let attributedTitle = NSMutableAttributedString(attachment: attachment)
+        attributedTitle.append(NSAttributedString(string: " Copied", attributes: [.font: UIFont.systemFont(ofSize: 16)]))
+
+        alert.setValue(attributedTitle, forKey: "attributedTitle")
+
+        ShowAlert(alert)
+    }
+
     UIPasteboard.general.string = text
-    if (alert ?? true) {DismissAlert()}
+
+    if (alert ?? true) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DismissAlert()
+        }
+    }
 }
 
 func share(url: URL) -> Void {
