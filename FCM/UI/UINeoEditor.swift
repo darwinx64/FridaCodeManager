@@ -181,6 +181,7 @@ struct NeoEditor: UIViewRepresentable {
     private var render: Double
     private var enableToolbar: Bool
     private var current_line_highlighting: Bool
+    private var cachehighlightings: Bool
     private var project: Project
 
     init(
