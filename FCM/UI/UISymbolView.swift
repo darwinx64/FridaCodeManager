@@ -70,19 +70,35 @@ struct SFSymbolListView: View {
     var body: some View {
         ScrollView {
             LazyVStack {
-                ForEach(symbols, id: \.self) { symbolName in
+                ForEach(symbols.indices, id: \.self) { index in
+                    let symbolName = symbols[index]
                     Button(action: {
                         copyToClipboard(text: symbolName)
                     }) {
                         HStack {
                             Image(systemName: symbolName)
                                 .frame(width: 30, height: 30)
-                            Spacer()
+                                .padding(.leading, 16)
+
                             Text(symbolName)
+                                .padding(.leading, 8)
+                            Spacer()
+                        }
+                        .buttonStyle(.plain)
+                        .padding(.vertical, 12)
+                        .padding(.horizontal)
+                        if index < symbols.count - 1 {
+                            Divider()
                         }
                     }
+                    Divider()
                 }
             }
+            .frame(maxWidth: .infinity)
+            .background(Color(.secondarySystemBackground))
+            .cornerRadius(10)
+            .padding(20)
+            .padding(.vertical)
         }
         .navigationBarTitle("SF Symbols")
         .navigationBarTitleDisplayMode(.inline)
