@@ -65,21 +65,12 @@ struct SFSymbolView: View {
     }
 }
 
-class SymbolStore: ObservableObject {
-    @Published var symbols: [String]
-    
-    init(symbols: [String]) {
-        self.symbols = symbols
-    }
-}
-
 struct SFSymbolListView: View {
     @State var symbols: [String]
-    @StateObject var symbolStore = SymbolStore(symbols: symbols)
     var body: some View {
         ScrollView {
             LazyVStack {
-                ForEach(symbolStore.symbols, id: \.self) { symbolName in
+                ForEach(symbols, id: \.self) { symbolName in
                     Button(action: {
                         copyToClipboard(text: symbolName)
                     }) {
