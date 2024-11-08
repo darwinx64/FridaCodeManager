@@ -26,6 +26,8 @@ struct ProjectPrefsView: View {
 	@Binding var ProjectName: String
 	@Binding var uuid: UUID
 	@Binding var rname: String
+
+	@State private var commitSheetIsPresented: Bool = false
 	var body: some View {
 		NavigationView {
 			List {
@@ -45,6 +47,26 @@ struct ProjectPrefsView: View {
 				) {
 					Label("SDK", systemImage: "sdcard.fill")
 				}
+				Section {
+					Button { commitSheetIsPresented = true } label: {
+						Label("Commit", systemImage: "paintbrush.fill")
+					}
+				} header: {
+					Label("Source Control", systemImage: "curlybraces.square")
+				}
+			}
+			.sheet(isPresented: $commitSheetIsPresented) {
+				Button { commitSheetIsPresented = false } label: {
+					Text("Commit")
+				}
+				.buttonStyle(.borderedProminent)
+				.controlSize(.large)
+				Button { commitSheetIsPresented = false } label: {
+					Text("Cancel")
+				}
+				.tint(.red)
+				.buttonStyle(.bordered)
+				.controlSize(.large)
 			}
 			.listStyle(InsetGroupedListStyle())
 			.navigationTitle("\(rname)")
