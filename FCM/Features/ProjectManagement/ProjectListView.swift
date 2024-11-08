@@ -32,6 +32,7 @@ struct ProjectListView: View {
 	@State private var action: Int = 0
 	@State private var fileImporter = false
 	@State private var showProj = false
+	@State private var sourceControlSheetPresented = false
 
 	@Environment(\.presentationMode) private var presentationMode
 
@@ -112,6 +113,13 @@ struct ProjectListView: View {
 			.toolbar {
 				ToolbarItem(placement: .navigationBarTrailing) {
 					Button(action: {
+						sourceControlSheetPresented = true
+					}) {
+						Image(systemName: "arrow.trianglehead.branch")
+					}
+				}
+				ToolbarItem(placement: .navigationBarTrailing) {
+					Button(action: {
 						AppName = ""
 						BundleID = ""
 						showProj = true
@@ -126,6 +134,9 @@ struct ProjectListView: View {
 						Image(systemName: "square.and.arrow.down.fill")
 					}
 				}
+			}
+			.sheet(isPresented: $sourceControlSheetPresented) {
+				SourceControlView(fromProjectList: true)
 			}
 			.sheet(isPresented: $Prefs) {
 				ProjectPrefsView(ProjectName: $projname, uuid: $uuid, rname: $projrname)
