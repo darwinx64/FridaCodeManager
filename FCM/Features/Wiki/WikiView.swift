@@ -32,7 +32,7 @@ struct WikiView: View {
 	var body: some View {
 		NavigationView {
 			List {
-				// TODO: Implement destinations, maybe from an API somehow on https://fridacodemanager.github.io?
+				// TODO: this is done in main repo pull it eventually
 				Section {
 					NavigationLink(destination: WikiPlaceholderDestination()) {
 						Text("Introduction")

@@ -25,20 +25,22 @@ import SwiftUI
 struct SourceControlView: View {
 	@State var fromProjectList: Bool = false
 	var body: some View {
-		List {
-			if fromProjectList {
-				NavigationLink(destination: WikiPlaceholderDestination()) {
-					Label("Clone Repository", systemImage: "document.on.document.fill")
-				}
-				NavigationLink(destination: WikiPlaceholderDestination()) {
-					Label("Link Account", systemImage: "link.badge.plus")
-				}
-			} else {
-				NavigationLink(destination: WikiPlaceholderDestination()) {
-					Label("TBD", systemImage: "pencil")
+		NavigationView {
+			List {
+				if fromProjectList {
+					NavigationLink(destination: WikiPlaceholderDestination()) {
+						Label("Clone", systemImage: "arrow.down.document.fill")
+					}
+					NavigationLink(destination: WikiPlaceholderDestination()) {
+						Label("Manage Accounts", systemImage: "person.2.badge.gearshape.fill")
+					}
+				} else {
+					NavigationLink(destination: WikiPlaceholderDestination()) {
+						Label("TBD", systemImage: "pencil")
+					}
 				}
 			}
+			.listStyle(InsetGroupedListStyle())
 		}
-		.listStyle(InsetGroupedListStyle())
 	}
 }
