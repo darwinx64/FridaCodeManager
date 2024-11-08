@@ -173,7 +173,7 @@ struct FileList: View {
 						Button(action: {
 							sourceControlSheetPresented = true
 						}) {
-							Label("Source Control", systemImage: "arrow.trianglehead.branch")
+							Label("Source Control", systemImage: "curlybraces.square")
 						}
 						Button(action: {
 							activeSheet = .impSheet
