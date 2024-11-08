@@ -23,10 +23,12 @@
 import SwiftUI
 
 struct DisplaySettingsView: View {
-	@AppStorage("accentColour") var accentColour: String = "ffs"
+	@AppStorage("accentColour") var accentColour: Color = .primary
 	var body: some View {
 		List {
-
+			ColorPicker("Accent Colour", selection: $accentColour, supportsOpacity: true)
 		}
+		.navigationTitle("Display")
+		.navigationBarTitleDisplayMode(.inline)
 	}
 }

@@ -24,6 +24,7 @@ import SwiftUI
 import UIKit
 
 struct SFSymbolView: View {
+	@AppStorage("accentColour") var accentColour: Color = .primary
 	var body: some View {
 		List {
 			NavigationLink(destination: SFSymbolListView(symbols: gSFSymbols())) {
@@ -86,7 +87,7 @@ struct SFSymbolListView: View {
 							Spacer()
 						}
 						.buttonStyle(.plain)
-						.accentColor(.primary)
+						.accentColor(accentColour)
 					}
 					if index < symbols.count - 1 {
 						Divider()

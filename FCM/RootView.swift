@@ -25,6 +25,7 @@ import SwiftUI
 struct RootView: View {
 	@State private var project_list_id: UUID = UUID()
 	@State private var projects: [Project] = []
+	@AppStorage("accentColour") var accentColour: Color = .primary
 
 	var body: some View {
 		TabView {
@@ -51,6 +52,7 @@ struct RootView: View {
 		.onAppear {
 			GetProjectsBind(Projects: $projects)
 		}
+		.accentColor(accentColour)
 	}
 }
 

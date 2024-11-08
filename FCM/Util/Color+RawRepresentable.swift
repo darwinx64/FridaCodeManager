@@ -1,5 +1,5 @@
 /*
- AboutView.swift
+ Color+RawRepresentable.swift
 
  Copyright (C) 2023, 2024 SparkleChan and SeanIsTethered
  Copyright (C) 2024 fridakitten
@@ -20,22 +20,36 @@
  You should have received a copy of the GNU General Public License
  along with FridaCodeManager. If not, see <https://www.gnu.org/licenses/>.
  */
+/// src: https://medium.com/geekculture/using-appstorage-with-swiftui-colors-and-some-nskeyedarchiver-magic-a38038383c5e
+/// seems like `UINeoEditor.swift:1207` doesnt support a default value?
+import Foundation
 import SwiftUI
-import UniformTypeIdentifiers
+import UIKit
 
-struct AboutView: View {
-	var body: some View {
-		List {
-			VersionView()
-			ChangelogView()
-			ContributorRowListView()
+extension Color: RawRepresentable {
+	public init?(rawValue: String) {
+		guard let data = Data(base64Encoded: rawValue) else {
+			self = .primary
+			return
 		}
-		.navigationTitle("About")
-		.navigationBarTitleDisplayMode(.inline)
-		.listStyle(InsetGroupedListStyle())
-	}
-}
 
-extension UTType {
-	static var project: UTType { UTType(filenameExtension: "sproj")! }
+		do {
+			let color =
+				try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? UIColor ?? .primary
+			self = Color(color)
+		} catch {
+			self = .primary
+		}
+	}
+
+	public var rawValue: String {
+		do {
+			let data =
+				try NSKeyedArchiver.archivedData(
+					withRootObject: UIColor(self), requiringSecureCoding: false) as Data
+			return data.base64EncodedString()
+		} catch {
+			return ""
+		}
+	}
 }

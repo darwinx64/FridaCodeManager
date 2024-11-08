@@ -400,6 +400,7 @@ private func isDirectory(_ url: URL) -> Bool {
 
 private func gProperty(_ fileURL: URL) -> FileProperty {
     var property: FileProperty = FileProperty(symbol: "", color: Color.black, size: 0)
+	@AppStorage("accentColour") var accentColour: Color = .primary
 
     let suffix = gsuffix(from: fileURL.path)
     switch(suffix) {
@@ -437,7 +438,7 @@ private func gProperty(_ fileURL: URL) -> FileProperty {
             property.size = 4*/
         case "plist":
             property.symbol = "list.bullet.indent"
-            property.color = Color.accentColor
+            property.color = accentColour
         default:
             property.symbol = "doc.fill"
             property.color = Color.primary
