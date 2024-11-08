@@ -207,7 +207,7 @@ struct FileList: View {
 			}
 		}
 		.sheet(isPresented: $sourceControlSheetPresented) {
-			SourceControlView()
+			SourceControlView(fromProjectList: false)
 		}
 		.sheet(item: $activeSheet) { sheet in
 			Group {

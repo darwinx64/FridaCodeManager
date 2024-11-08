@@ -35,5 +35,9 @@ struct SourceControlView: View {
 				Text("TBD")
 			}
 		}
+		.accentColor(.secondary)
+		.listStyle(InsetGroupedListStyle())
+		.navigationTitle("Settings")
+		.navigationBarTitleDisplayMode(.inline)
 	}
 }
