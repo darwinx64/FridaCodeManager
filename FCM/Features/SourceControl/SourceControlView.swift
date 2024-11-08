@@ -27,17 +27,18 @@ struct SourceControlView: View {
 	var body: some View {
 		List {
 			if fromProjectList {
-				Button {
-				} label: {
-					Label("Clone", systemImage: "document.on.document.fill")
+				NavigationLink(destination: EmptyView()) {
+					Label("Clone Repository", systemImage: "document.on.document.fill")
+				}
+				NavigationLink(destination: EmptyView()) {
+					Label("Link Account", systemImage: "link.badge.plus")
 				}
 			} else {
-				Text("TBD")
+				NavigationLink(destination: EmptyView()) {
+					Label("TBD", systemImage: "pencil")
+				}
 			}
 		}
-		.accentColor(.secondary)
 		.listStyle(InsetGroupedListStyle())
-		.navigationTitle("Settings")
-		.navigationBarTitleDisplayMode(.inline)
 	}
 }
