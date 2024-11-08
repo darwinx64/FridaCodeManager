@@ -29,16 +29,16 @@ import UIKit
 extension Color: RawRepresentable {
 	public init?(rawValue: String) {
 		guard let data = Data(base64Encoded: rawValue) else {
-			self = .primary
+			self = .systemBlue
 			return
 		}
 
 		do {
 			let color =
-				try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? UIColor ?? .primary
+				try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? UIColor ?? .systemBlue
 			self = Color(color)
 		} catch {
-			self = .primary
+			self = .systemBlue
 		}
 	}
 
