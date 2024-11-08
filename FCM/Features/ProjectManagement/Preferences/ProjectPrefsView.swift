@@ -48,11 +48,32 @@ struct ProjectPrefsView: View {
 					Label("SDK", systemImage: "sdcard.fill")
 				}
 				Section {
+					// placeholders!!
+					Button {} label: {
+						Label("Pull", systemImage: "arrow.up.to.line")
+					}
 					Button { commitSheetIsPresented = true } label: {
-						Label("Commit", systemImage: "paintbrush.fill")
+						Label("Commit", systemImage: "circle.and.line.horizontal")
+					}
+					Button {} label: {
+						Label("Push", systemImage: "arrow.down.to.line")
+					}
+					Button {} label: {
+						Label("Undo", systemImage: "arrow.uturn.backward")
+					}
+					Button {} label: {
+						Label("Redo", systemImage: "arrow.uturn.forward")
 					}
 				} header: {
-					Label("Source Control", systemImage: "curlybraces.square")
+					Label("Quick Source Control", systemImage: "ellipsis.curlybraces")
+				}
+				Section {
+					Button {} label: {
+						// if they need more granular control over git or something, a terminal would probably be a good idea
+						Label("Terminal", systemImage: "apple.terminal.fill")
+					}
+				} header: {
+					Text("Advanced")
 				}
 			}
 			.sheet(isPresented: $commitSheetIsPresented) {

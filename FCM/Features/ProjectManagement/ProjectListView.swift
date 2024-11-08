@@ -115,7 +115,7 @@ struct ProjectListView: View {
 					Button(action: {
 						sourceControlSheetPresented = true
 					}) {
-						Image(systemName: "curlybraces.square")
+						Image(systemName: "ellipsis.curlybraces")
 					}
 				}
 				ToolbarItem(placement: .navigationBarTrailing) {

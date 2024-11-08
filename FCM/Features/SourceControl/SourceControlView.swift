@@ -27,14 +27,14 @@ struct SourceControlView: View {
 	var body: some View {
 		List {
 			if fromProjectList {
-				NavigationLink(destination: EmptyView()) {
+				NavigationLink(destination: WikiPlaceholderDestination()) {
 					Label("Clone Repository", systemImage: "document.on.document.fill")
 				}
-				NavigationLink(destination: EmptyView()) {
+				NavigationLink(destination: WikiPlaceholderDestination()) {
 					Label("Link Account", systemImage: "link.badge.plus")
 				}
 			} else {
-				NavigationLink(destination: EmptyView()) {
+				NavigationLink(destination: WikiPlaceholderDestination()) {
 					Label("TBD", systemImage: "pencil")
 				}
 			}
