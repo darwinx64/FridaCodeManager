@@ -24,7 +24,6 @@ import SwiftUI
 import UIKit
 
 struct SFSymbolView: View {
-	@AppStorage("accentColour") var accentColour: Color = .primary
 	var body: some View {
 		List {
 			NavigationLink(destination: SFSymbolListView(symbols: gSFSymbols())) {
@@ -68,6 +67,7 @@ struct SFSymbolView: View {
 
 struct SFSymbolListView: View {
 	@State var symbols: [String]
+	@AppStorage("accentColour") var accentColour: Color = .primary
 	var body: some View {
 		ScrollView {
 			LazyVStack {
