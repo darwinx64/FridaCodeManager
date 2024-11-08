@@ -23,7 +23,7 @@
 import SwiftUI
 
 struct SourceControlView: View {
-	@State var fromProjectList: Bool? = false
+	@State var fromProjectList: Bool = false
 	var body: some View {
 		List {
 			if fromProjectList {
